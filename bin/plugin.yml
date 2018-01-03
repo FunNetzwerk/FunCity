@@ -1,0 +1,8 @@
+name: FunCity
+version: 1.0
+author: Freakster
+
+main: eu.funnetzwerk.funcity.FunCity
+
+commands:
+   taxi:
