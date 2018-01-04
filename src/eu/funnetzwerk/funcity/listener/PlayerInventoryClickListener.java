@@ -10,7 +10,6 @@ import org.bukkit.event.inventory.InventoryType.SlotType;
 
 import eu.funnetzwerk.funcity.FunCity;
 import eu.funnetzwerk.funcity.var.TeleportPoint;
-import net.milkbowl.vault.Vault;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 public class PlayerInventoryClickListener implements Listener {
@@ -20,11 +19,11 @@ public class PlayerInventoryClickListener implements Listener {
 		
 		Player p = (Player) e.getWhoClicked();
 		
-		if(p.hasPermission("FunCity.Taxi.Use")) {
+		
 			
 			if(FunCity.getTaxiClass().canTeleport(p)) {
 				
-				if(e.getInventory().getName().equals("§e§lTaxi-Haltestellen")) {
+				if(e.getInventory().getName().equals("Â§eÂ§lTaxi-Haltestellen")) {
 					
 					e.setCancelled(true);
 					
@@ -39,26 +38,23 @@ public class PlayerInventoryClickListener implements Listener {
 									for(TeleportPoint tp : FunCity.getTaxiClass().getStops()) {
 										
 										if(e.getCurrentItem().getItemMeta().getDisplayName() == tp.getDisplayName()) {
+										
+											if(p.hasPermission("FunCity.Taxi.Use")) {
 											
-											EconomyResponse r = FunCity.econ.withdrawPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()), FunCity.getTaxiClass().getCostPerTeleport());
-											
-											String currency;
-											
-											if(FunCity.getTaxiClass().getCostPerTeleport() > 1) {
-												currency = FunCity.econ.currencyNamePlural();
+												EconomyResponse r = FunCity.econ.withdrawPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()), FunCity.getTaxiClass().getCostPerTeleport());
+												
+												if(r.transactionSuccess()) {
+													p.closeInventory();
+													tp.teleportEntity(p);
+													p.sendMessage("Â§7Du wurdest zur Haltestelle Â§6" + tp.getDisplayName() + "Â§7fÃ¼r Â§6" + FunCity.getTaxiClass().getCostPerTeleport() + "Â§7 teleportiert!");
+												} else {
+													p.closeInventory();
+													p.sendMessage("Â§7Du besitzt nicht genÃ¼gend Geld!");
+												}
+												
 											} else {
-												currency = FunCity.econ.currencyNameSingular();
+												p.sendMessage("ï¿½7Du kannst kein Taxi verwenden.");
 											}
-											
-											if(r.transactionSuccess()) {
-												p.closeInventory();
-												tp.teleportEntity(p);
-												p.sendMessage("§7Du wurdest zur Haltestelle §6" + tp.getDisplayName() + "§7 für §6" + FunCity.getTaxiClass().getCostPerTeleport() + " " + currency + " §7 teleportiert!");
-											} else {
-												p.closeInventory();
-												p.sendMessage("§7Du besitzt nicht genügend Geld!");
-											}
-											
 											
 										}
 										
@@ -76,12 +72,10 @@ public class PlayerInventoryClickListener implements Listener {
 				
 			} else {
 				p.closeInventory();
-				p.sendMessage("§7Bitte warte einen Moment bevor du wieder ein Taxi verwendest!");
+				p.sendMessage("ï¿½7Bitte warte einen Moment bevor du wieder ein Taxi verwendest!");
 			}
 			
-		} else {
-			p.sendMessage("§7Du kannst kein Taxi verwenden.");
-		}
+		
 		
 	}
 	

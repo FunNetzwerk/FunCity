@@ -27,7 +27,7 @@ public class TaxiCommand implements CommandExecutor {
 			if(p.hasPermission("FunCity.Taxi.Use")) {
 				
 				int size = FunCity.getTaxiClass().getStops().size();
-				Inventory menu = Bukkit.createInventory(null, calculateInventorySize(size), "§e§lTaxi-Haltestellen");
+				Inventory menu = Bukkit.createInventory(null, calculateInventorySize(size), "Â§eÂ§lTaxi-Haltestellen");
 				
 				for(TeleportPoint tp : FunCity.getTaxiClass().getStops()) {
 					
@@ -35,8 +35,8 @@ public class TaxiCommand implements CommandExecutor {
 					ItemMeta meta = item.getItemMeta();
 					meta.setDisplayName(tp.getDisplayName());
 					ArrayList<String> lore = new ArrayList<String>();
-					lore.add("§7Klicke zum teleportieren!");
-					lore.add("§6Preis: §6" + FunCity.getTaxiClass().getCostPerTeleport());
+					lore.add("Â§7Klicke zum teleportieren!");
+					lore.add("Â§6Preis: Â§6" + FunCity.getTaxiClass().getCostPerTeleport());
 					meta.setLore(lore);
 					item.setItemMeta(meta);
 					
@@ -47,7 +47,7 @@ public class TaxiCommand implements CommandExecutor {
 				p.openInventory(menu);
 				
 			} else {
-				p.sendMessage("§7Du kannst kein Taxi verwenden.");
+				p.sendMessage("Â§7Du kannst kein Taxi verwenden.");
 			}
 			
 		}

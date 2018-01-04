@@ -24,14 +24,14 @@ public class setTaxiCommand implements CommandExecutor {
 					
 					FunCity.getTaxiClass().addPoint(name, p.getLocation());
 					
-					p.sendMessage("§7Haltestelle §6" + name + "§7 wurde hinzugefügt!");
+					p.sendMessage("Â§7Haltestelle Â§6" + name + "Â§7 wurde hinzugefï¿½gt!");
 					
 				} else {
-					p.sendMessage("§cSyntax: /setTaxi <Name>");
+					p.sendMessage("Â§cSyntax: /setTaxi <Name>");
 				}
 				
 			} else {
-				p.sendMessage("§7Du hast keine Berechtigung dies zu tun!");
+				p.sendMessage("Â§7Du hast keine Berechtigung dies zu tun!");
 			}
 			
 		}
