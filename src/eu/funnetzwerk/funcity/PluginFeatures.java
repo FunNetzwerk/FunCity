@@ -2,7 +2,7 @@ package eu.funnetzwerk.funcity;
 
 public enum PluginFeatures {
 
-	Taxi(true), PLACEHOLDER(false);
+	Taxi(true), COMPANY(true), CMD_BLOCKER(true), PLACEHOLDER(false);
 	
 	private boolean active = false;
 	
