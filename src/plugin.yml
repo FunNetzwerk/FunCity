@@ -1,0 +1,12 @@
+name: FunCity
+version: 1.0
+author: Freakster
+
+depend: [Vault]
+
+main: eu.funnetzwerk.funcity.FunCity
+
+commands:
+   taxi:
+   settaxi:
+   deltaxi:
